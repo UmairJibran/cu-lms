@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
       body: Center(
         child: TextButton(
           child: Text("Login"),
-          onPressed: () => Navigator.of(context).pushNamed(
+          onPressed: () => Navigator.of(context).pushReplacementNamed(
             Login.routeName,
           ),
         ),
