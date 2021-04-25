@@ -4,6 +4,7 @@ import 'src/views/v_home.dart';
 import 'src/views/v_login.dart';
 import 'src/views/v_create_user.dart';
 import 'src/views/v_create_course.dart';
+import 'src/views/v_assign_course.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         Login.routeName: (ctx) => Login(),
         CreateUser.routeName: (ctx) => CreateUser(),
         CreateCourse.routeName: (ctx) => CreateCourse(),
+        AssignCourse.routeName: (ctx) => AssignCourse(),
       },
     );
   }
