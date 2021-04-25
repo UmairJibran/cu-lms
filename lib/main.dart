@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'src/views/v_home.dart';
 import 'src/views/v_login.dart';
 import 'src/views/v_create_user.dart';
+import 'src/views/v_create_course.dart';
 
 void main() {
   runApp(MyApp());
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         Home.routeName: (ctx) => Home(),
         Login.routeName: (ctx) => Login(),
         CreateUser.routeName: (ctx) => CreateUser(),
+        CreateCourse.routeName: (ctx) => CreateCourse(),
       },
     );
   }

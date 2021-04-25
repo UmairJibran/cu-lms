@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'v_create_user.dart';
+import 'v_create_course.dart';
 
 import '../components/home_text_button.dart';
 
@@ -36,7 +37,9 @@ class Home extends StatelessWidget {
               width: getWidth(context),
               height: getHeight(context),
               label: "Create Course",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(CreateCourse.routeName);
+              },
             ),
             HomeTextButton(
               width: getWidth(context),
