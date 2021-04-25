@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'src/views/v_home.dart';
 import 'src/views/v_login.dart';
+import 'src/views/v_create_user.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Home.routeName: (ctx) => Home(),
         Login.routeName: (ctx) => Login(),
+        CreateUser.routeName: (ctx) => CreateUser(),
       },
     );
   }
