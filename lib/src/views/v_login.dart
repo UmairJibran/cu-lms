@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
             key: _key,
             child: Column(
               children: [
-                Image.asset("lib/assets/thumbnail.png"),
+                Image.asset("lib/assets/logo.png"),
                 TextFormField(
                   controller: _usernameController,
                   autovalidateMode: AutovalidateMode.disabled,
