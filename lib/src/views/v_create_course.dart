@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../components/course_code_text_field.dart';
+import '../components/course_name_text_field.dart';
+import '../components/course_prefix_text_field.dart';
+
 class CreateCourse extends StatefulWidget {
   static final routeName = "/create-course";
 
@@ -66,65 +70,12 @@ class _CreateCourseState extends State<CreateCourse> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      TextFormField(
-                        controller: _courseNameController,
-                        enabled: true,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        enableSuggestions: false,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          hintText: "Intro to Computing",
-                          labelText: "Course Name",
-                        ),
-                        validator: (value) {
-                          if (value == null)
-                            return "Please Enter Course Name";
-                          else if (value.trim().length == 0 ||
-                              value.trim().length < 3)
-                            return "Please enter a valid course name";
-                          else
-                            return null;
-                        },
-                      ),
-                      TextFormField(
-                        controller: _coursePrefixController,
-                        enabled: true,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        enableSuggestions: false,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          hintText: "CSC",
-                          labelText: "Course Prefix",
-                        ),
-                        validator: (value) {
-                          if (value == null)
-                            return "Please Enter Course Prefix";
-                          else if (value.trim().length == 0 ||
-                              value.trim().length < 3)
-                            return "Please Enter a valid course Prefix with minimum length of 3 characters";
-                          else
-                            return null;
-                        },
-                      ),
-                      TextFormField(
-                        controller: _courseCodeController,
-                        enabled: true,
-                        autovalidateMode: AutovalidateMode.disabled,
-                        enableSuggestions: false,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                          hintText: "358",
-                          labelText: "Course Code",
-                        ),
-                        validator: (value) {
-                          if (value == null)
-                            return "Please Enter Course Code";
-                          else if (value.trim().length <= 1)
-                            return "Please Enter a valid course code";
-                          else
-                            return null;
-                        },
-                      ),
+                      CourseNameTextField(
+                          courseNameController: _courseNameController),
+                      CoursePrefixTextField(
+                          coursePrefixController: _coursePrefixController),
+                      CourseCodeTextField(
+                          courseCodeController: _courseCodeController),
                     ],
                   ),
                 ),
