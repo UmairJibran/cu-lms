@@ -44,7 +44,11 @@ class _LoginState extends State<Login> {
             key: _key,
             child: Column(
               children: [
-                Image.asset("lib/assets/logo.png"),
+                Image.asset(
+                  "lib/assets/logo.png",
+                  height: getHeight(context) * 0.3,
+                  fit: BoxFit.cover,
+                ),
                 UsernameTextField(usernameController: _usernameController),
                 PasswordTextField(passwordController: _passwordController),
                 Row(
