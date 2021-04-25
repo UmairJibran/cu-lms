@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'v_home.dart';
 
+import '../components/password_text_field.dart';
+import '../components/username_text_field.dart';
+
 class Login extends StatefulWidget {
   static final routeName = "/";
 
@@ -42,47 +45,8 @@ class _LoginState extends State<Login> {
             child: Column(
               children: [
                 Image.asset("lib/assets/logo.png"),
-                TextFormField(
-                  controller: _usernameController,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  enabled: true,
-                  decoration: InputDecoration(
-                    labelText: "Username",
-                    hintText: "This can be your employee ID/Email",
-                    suffixIcon: Icon(Icons.person_outline_rounded),
-                  ),
-                  validator: (value) {
-                    if (value == null)
-                      return "Username Cannot be empty";
-                    else if (value.trim().isEmpty)
-                      return "Space can not be username";
-                    else if (value.trim().length < 4)
-                      return "Username's length must be at least 4 characters";
-                    else
-                      return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _passwordController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  enabled: true,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: "Password",
-                    hintText: "**********",
-                    suffixIcon: Icon(Icons.lock_outline_rounded),
-                  ),
-                  validator: (value) {
-                    if (value == null)
-                      return "Password Cannot be empty";
-                    else if (value.isEmpty)
-                      return "Password Cannot be empty";
-                    else if (value.trim().length < 6)
-                      return "Password's length must be at least 6 characters";
-                    else
-                      return null;
-                  },
-                ),
+                UsernameTextField(usernameController: _usernameController),
+                PasswordTextField(passwordController: _passwordController),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
