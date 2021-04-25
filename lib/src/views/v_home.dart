@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'v_login.dart';
+import '../components/home_text_button.dart';
 
 class Home extends StatelessWidget {
   static final routeName = "/home";
+
+  /*Functions*/
+  double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
+
+  double getWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +17,30 @@ class Home extends StatelessWidget {
         title: Text("CU-LMS"),
         centerTitle: true,
       ),
-      body: Center(
-        child: TextButton(
-          child: Text("Login"),
-          onPressed: () => Navigator.of(context).pushReplacementNamed(
-            Login.routeName,
-          ),
+      body: Container(
+        height: getHeight(context),
+        width: getWidth(context),
+        child: Column(
+          children: [
+            HomeTextButton(
+              width: getWidth(context),
+              height: getHeight(context),
+              label: "Create User",
+              onPressed: () {},
+            ),
+            HomeTextButton(
+              width: getWidth(context),
+              height: getHeight(context),
+              label: "Create Course",
+              onPressed: () {},
+            ),
+            HomeTextButton(
+              width: getWidth(context),
+              height: getHeight(context),
+              label: "Assign Course",
+              onPressed: () {},
+            ),
+          ],
         ),
       ),
     );
