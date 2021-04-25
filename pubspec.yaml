@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -58,10 +58,17 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: lib/assets/fonts/Raleway-Regular.ttf
+          weight: 400
+        - asset: lib/assets/fonts/Raleway-Medium.ttf
+          weight: 500
+        - asset: lib/assets/fonts/Raleway-SemiBold.ttf
+          weight: 600
+        - asset: lib/assets/fonts/Raleway-Bold.ttf
+          weight: 700
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
