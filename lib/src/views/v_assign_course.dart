@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../models/teacher.dart';
 
+import '../components/teacher_list_tile.dart';
+
 import '../services/get_teachers.dart';
 
 class AssignCourse extends StatefulWidget {
@@ -72,7 +74,7 @@ class _AssignCourseState extends State<AssignCourse> {
                     child: ListView.builder(
                       itemBuilder: (_, index) {
                         User teacher = teachers[index];
-                        return teacherListTile(teacher, context);
+                        return TeacherListTile(teacher: teacher);
                       },
                       itemCount: teachers.length,
                     ),
@@ -80,20 +82,6 @@ class _AssignCourseState extends State<AssignCourse> {
                 ],
               ),
       ),
-    );
-  }
-
-  ListTile teacherListTile(User teacher, BuildContext context) {
-    return ListTile(
-      title: Text(
-        "${teacher.name} ( ${teacher.id} )",
-        style: TextStyle(
-          fontSize: getHeight(context) * 0.035,
-        ),
-      ),
-      onTap: () {
-        print(teacher.id);
-      },
     );
   }
 }
