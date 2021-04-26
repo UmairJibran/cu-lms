@@ -4,6 +4,8 @@ import '../components/course_code_text_field.dart';
 import '../components/course_name_text_field.dart';
 import '../components/course_prefix_text_field.dart';
 
+import '../services/create_course.dart';
+
 class CreateCourse extends StatefulWidget {
   static final routeName = "/create-course";
 
@@ -18,6 +20,8 @@ class _CreateCourseState extends State<CreateCourse> {
   TextEditingController _courseNameController = TextEditingController();
   TextEditingController _courseCodeController = TextEditingController();
   TextEditingController _coursePrefixController = TextEditingController();
+  late bool _error;
+
   /*Functions*/
 
   double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -29,6 +33,7 @@ class _CreateCourseState extends State<CreateCourse> {
     super.initState();
     _key = GlobalKey<FormState>();
     _adding = false;
+    _error = false;
   }
 
   @override
@@ -39,16 +44,25 @@ class _CreateCourseState extends State<CreateCourse> {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () {
+            onPressed: () async {
               if (_key.currentState.validate()) {
                 setState(() {
                   _adding = true;
                 });
-                //TODO: Add this course to database
-                Navigator.of(context).pop();
+                var response = await createCourse(
+                  _courseNameController.text,
+                  _coursePrefixController.text.toUpperCase(),
+                  _courseCodeController.text,
+                );
                 setState(() {
                   _adding = false;
                 });
+                if (response == "true")
+                  Navigator.of(context).pop();
+                else
+                  setState(() {
+                    _error = true;
+                  });
               }
             },
           ),
@@ -76,6 +90,13 @@ class _CreateCourseState extends State<CreateCourse> {
                           coursePrefixController: _coursePrefixController),
                       CourseCodeTextField(
                           courseCodeController: _courseCodeController),
+                      if (_error)
+                        Text(
+                          "An Error has Occured. Please try again",
+                          style: TextStyle(
+                            color: Colors.red[800],
+                          ),
+                        ),
                     ],
                   ),
                 ),
