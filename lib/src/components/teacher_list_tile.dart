@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
+import '../views/v_select_course.dart';
 
 class TeacherListTile extends StatelessWidget {
   final User teacher;
@@ -16,7 +17,7 @@ class TeacherListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print(teacher.id);
+        Navigator.of(context).pushNamed(SelectCourse.routeName);
       },
     );
   }
