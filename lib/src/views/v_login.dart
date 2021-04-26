@@ -61,8 +61,17 @@ class _LoginState extends State<Login> {
                       PasswordTextField(
                           passwordController: _passwordController),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: _invalidCredentials
+                            ? MainAxisAlignment.spaceBetween
+                            : MainAxisAlignment.end,
                         children: [
+                          if (_invalidCredentials)
+                            Text(
+                              "Invalid Username &\npassword combination",
+                              style: TextStyle(
+                                color: Colors.red[800],
+                              ),
+                            ),
                           TextButton(
                             child: Text("Login"),
                             onPressed: () async {
