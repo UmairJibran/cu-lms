@@ -2,6 +2,7 @@
     package="com.example.cu_lms">
    <application
         android:label="cu_lms"
+        android:usesCleartextTraffic="true"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
