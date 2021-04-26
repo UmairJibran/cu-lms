@@ -72,17 +72,7 @@ class _AssignCourseState extends State<AssignCourse> {
                     child: ListView.builder(
                       itemBuilder: (_, index) {
                         User teacher = teachers[index];
-                        return ListTile(
-                          title: Text(
-                            "${teacher.name} ( ${teacher.id} )",
-                            style: TextStyle(
-                              fontSize: getHeight(context) * 0.035,
-                            ),
-                          ),
-                          onTap: () {
-                            print(teacher.id);
-                          },
-                        );
+                        return teacherListTile(teacher, context);
                       },
                       itemCount: teachers.length,
                     ),
@@ -92,11 +82,18 @@ class _AssignCourseState extends State<AssignCourse> {
       ),
     );
   }
-}
 
-class ListItem {
-  final String name;
-  final String id;
-
-  ListItem(this.name, this.id);
+  ListTile teacherListTile(User teacher, BuildContext context) {
+    return ListTile(
+      title: Text(
+        "${teacher.name} ( ${teacher.id} )",
+        style: TextStyle(
+          fontSize: getHeight(context) * 0.035,
+        ),
+      ),
+      onTap: () {
+        print(teacher.id);
+      },
+    );
+  }
 }
