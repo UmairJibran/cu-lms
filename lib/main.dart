@@ -18,6 +18,13 @@ class MyApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(16, 96, 165, 1),
         canvasColor: Colors.white,
         fontFamily: "Raleway",
+        textTheme: TextTheme(
+          headline1: TextStyle(
+            fontSize: 20,
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       routes: {
         Home.routeName: (ctx) => Home(),
