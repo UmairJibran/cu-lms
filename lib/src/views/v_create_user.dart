@@ -6,6 +6,8 @@ import '../components/email_text_field.dart';
 import '../components/generated_password_text_field.dart';
 import '../components/name_text_field.dart';
 
+import '../services/create_user.dart';
+
 class CreateUser extends StatefulWidget {
   static final routeName = "/create-user";
 
@@ -22,23 +24,34 @@ class _CreateUserState extends State<CreateUser> {
   late String _role;
   final uuid = Uuid();
   late bool _adding;
+  late bool _error;
 
   /*Functions*/
   double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
 
   double getWidth(BuildContext context) => MediaQuery.of(context).size.width;
 
-  void addRecord() {
+  void addRecord() async {
     if (_key.currentState.validate()) {
       setState(() {
         _adding = true;
       });
       _key.currentState.save();
-      //TODO: Write to database
+      var response = await createUser(
+        _nameController.text,
+        _emailController.text,
+        _password,
+        _role,
+      );
       setState(() {
         _adding = false;
       });
-      Navigator.of(context).pop();
+      if (response == "true")
+        Navigator.of(context).pop();
+      else
+        setState(() {
+          _error = true;
+        });
     }
   }
 
@@ -49,6 +62,7 @@ class _CreateUserState extends State<CreateUser> {
     _password = uuid.v4().substring(0, 13);
     _role = "student";
     _adding = false;
+    _error = false;
   }
 
   @override
@@ -126,6 +140,13 @@ class _CreateUserState extends State<CreateUser> {
                           ),
                         ],
                       ),
+                      if (_error)
+                        Text(
+                          "An Error has Occured. Please try again",
+                          style: TextStyle(
+                            color: Colors.red[800],
+                          ),
+                        ),
                     ],
                   ),
                 ),
