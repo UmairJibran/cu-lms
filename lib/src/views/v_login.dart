@@ -5,6 +5,8 @@ import 'v_home.dart';
 import '../components/password_text_field.dart';
 import '../components/username_text_field.dart';
 
+import '../services/authenticate.dart';
+
 class Login extends StatefulWidget {
   static final routeName = "/";
 
@@ -17,6 +19,7 @@ class _LoginState extends State<Login> {
   late final _key;
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  late bool _loading, _invalidCredentials;
 
   /*Functions*/
   double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -27,6 +30,8 @@ class _LoginState extends State<Login> {
   void initState() {
     super.initState();
     _key = GlobalKey<FormState>();
+    _loading = false;
+    _invalidCredentials = false;
   }
 
   @override
@@ -39,40 +44,55 @@ class _LoginState extends State<Login> {
           horizontal: getWidth(context) * 0.1,
           vertical: getHeight(context) * 0.1,
         ),
-        child: SingleChildScrollView(
-          child: Form(
-            key: _key,
-            child: Column(
-              children: [
-                Image.asset(
-                  "lib/assets/logo.png",
-                  height: getHeight(context) * 0.3,
-                  fit: BoxFit.cover,
+        child: _loading
+            ? Center(child: CircularProgressIndicator())
+            : SingleChildScrollView(
+                child: Form(
+                  key: _key,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        "lib/assets/logo.png",
+                        height: getHeight(context) * 0.3,
+                        fit: BoxFit.cover,
+                      ),
+                      UsernameTextField(
+                          usernameController: _usernameController),
+                      PasswordTextField(
+                          passwordController: _passwordController),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            child: Text("Login"),
+                            onPressed: () async {
+                              if (_key.currentState.validate()) {
+                                setState(() {
+                                  _loading = true;
+                                });
+                                _key.currentState.save();
+                                dynamic response = await authenticateLogin(
+                                  _usernameController.text,
+                                  _passwordController.text,
+                                );
+                                if (response == "true") {
+                                  Navigator.of(context)
+                                      .pushReplacementNamed(Home.routeName);
+                                } else {
+                                  setState(() {
+                                    _invalidCredentials = true;
+                                    _loading = false;
+                                  });
+                                }
+                              }
+                            },
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-                UsernameTextField(usernameController: _usernameController),
-                PasswordTextField(passwordController: _passwordController),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      child: Text("Login"),
-                      onPressed: () {
-                        if (_key.currentState.validate()) {
-                          _key.currentState.save();
-                          //TODO: authenticate User then navigate to home
-                          print(_usernameController.text);
-                          print(_passwordController.text);
-                          Navigator.of(context)
-                              .pushReplacementNamed(Home.routeName);
-                        }
-                      },
-                    ),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
+              ),
       ),
     );
   }
