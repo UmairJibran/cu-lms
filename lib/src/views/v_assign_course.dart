@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/teacher.dart';
+import '../models/user.dart';
 
 import '../components/teacher_list_tile.dart';
 
