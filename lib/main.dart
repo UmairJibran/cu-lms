@@ -6,6 +6,7 @@ import 'src/views/v_create_user.dart';
 import 'src/views/v_create_course.dart';
 import 'src/views/v_assign_course.dart';
 import 'src/views/v_select_course.dart';
+import 'src/views/v_select_credits.dart';
 
 void main() {
   runApp(MyApp());
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         CreateCourse.routeName: (ctx) => CreateCourse(),
         AssignCourse.routeName: (ctx) => AssignCourse(),
         SelectCourse.routeName: (ctx) => SelectCourse(),
+        SelectCredits.routeName: (ctx) => SelectCredits(),
       },
     );
   }

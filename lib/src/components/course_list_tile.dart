@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/course.dart';
 
+import '../views/v_select_credits.dart';
+
 class CourseListTile extends StatelessWidget {
   final Course course;
   final int teacherId;
@@ -19,8 +21,10 @@ class CourseListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print(
-            "courseId: ${course.id.runtimeType}\nteacherId: ${teacherId.runtimeType}");
+        Navigator.of(context).pushNamed(
+          SelectCredits.routeName,
+          arguments: {"teacherId": teacherId, "courseId": course.id},
+        );
       },
     );
   }
