@@ -17,6 +17,7 @@ class _SelectCourseState extends State<SelectCourse> {
   /*Variables*/
   late List<Course> courses;
   late bool _loading;
+  late int teacherId;
 
   /*Functions*/
   double getHeight(BuildContext context) => MediaQuery.of(context).size.height;
@@ -47,6 +48,9 @@ class _SelectCourseState extends State<SelectCourse> {
 
   @override
   Widget build(BuildContext context) {
+    teacherId =
+        (ModalRoute.of(context)!.settings.arguments as Map)["teacherId"];
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Select Course"),
@@ -74,7 +78,10 @@ class _SelectCourseState extends State<SelectCourse> {
                     child: ListView.builder(
                       itemBuilder: (_, index) {
                         Course course = courses[index];
-                        return CourseListTile(course: course);
+                        return CourseListTile(
+                          course: course,
+                          teacherId: teacherId,
+                        );
                       },
                       itemCount: courses.length,
                     ),

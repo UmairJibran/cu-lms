@@ -17,7 +17,10 @@ class TeacherListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        Navigator.of(context).pushNamed(SelectCourse.routeName);
+        Navigator.of(context).pushNamed(
+          SelectCourse.routeName,
+          arguments: {"teacherId": teacher.id},
+        );
       },
     );
   }

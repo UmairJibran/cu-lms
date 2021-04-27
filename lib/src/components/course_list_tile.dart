@@ -3,8 +3,11 @@ import '../models/course.dart';
 
 class CourseListTile extends StatelessWidget {
   final Course course;
+  final int teacherId;
 
-  const CourseListTile({Key? key, required this.course}) : super(key: key);
+  const CourseListTile(
+      {Key? key, required this.course, required this.teacherId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,8 @@ class CourseListTile extends StatelessWidget {
         ),
       ),
       onTap: () {
-        print(course.id);
+        print(
+            "courseId: ${course.id.runtimeType}\nteacherId: ${teacherId.runtimeType}");
       },
     );
   }
