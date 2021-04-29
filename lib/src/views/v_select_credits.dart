@@ -61,7 +61,7 @@ class _SelectCreditsState extends State<SelectCredits> {
                             setState(() {
                               _registering = false;
                             });
-                            if (response == "true") {
+                            if (response["assigned"]) {
                               Navigator.of(context).popUntil(
                                 ModalRoute.withName(Home.routeName),
                               );

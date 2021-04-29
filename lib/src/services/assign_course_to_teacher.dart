@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import "./global_config.dart";
 
 import "package:http/http.dart" as http;
@@ -13,5 +15,5 @@ dynamic assignCourseToTeacher({
     "courseID": courseId.toString(),
     "subjectCredits": subjectCredits.toString(),
   });
-  return (response.body);
+  return jsonDecode(response.body);
 }
