@@ -1,3 +1,4 @@
+import 'package:cu_lms/src/models/user.dart';
 import 'package:flutter/material.dart';
 
 import 'v_home.dart';
@@ -6,6 +7,7 @@ import 'v_student_dashboard.dart';
 import '../components/password_text_field.dart';
 import '../components/username_text_field.dart';
 
+import '../services/global_config.dart';
 import '../services/authenticate.dart';
 
 class Login extends StatefulWidget {
@@ -86,10 +88,11 @@ class _LoginState extends State<Login> {
                                   _passwordController.text,
                                 );
                                 if (response["authenticated"]) {
-                                  if (response["role"] == "student")
+                                  loggedInUser = User.fromJson(response);
+                                  if (loggedInUser.role == "student")
                                     Navigator.of(context).pushReplacementNamed(
                                         StudentDashboard.routeName);
-                                  else
+                                  else if (loggedInUser.role == "admin")
                                     Navigator.of(context)
                                         .pushReplacementNamed(Home.routeName);
                                 } else {
