@@ -57,7 +57,7 @@ class _CreateCourseState extends State<CreateCourse> {
                 setState(() {
                   _adding = false;
                 });
-                if (response == "true")
+                if (response["created"])
                   Navigator.of(context).pop();
                 else
                   setState(() {

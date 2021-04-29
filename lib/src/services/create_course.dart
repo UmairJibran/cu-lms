@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 import 'global_config.dart';
@@ -16,5 +18,5 @@ dynamic createCourse(
       "name": name,
     },
   );
-  return (response.body);
+  return jsonDecode(response.body);
 }
