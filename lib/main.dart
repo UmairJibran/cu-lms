@@ -8,6 +8,7 @@ import 'src/views/v_assign_course.dart';
 import 'src/views/v_select_course.dart';
 import 'src/views/v_select_credits.dart';
 import 'src/views/v_student_dashboard.dart';
+import 'src/views/v_teacher_dashboard.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         SelectCourse.routeName: (ctx) => SelectCourse(),
         SelectCredits.routeName: (ctx) => SelectCredits(),
         StudentDashboard.routeName: (ctx) => StudentDashboard(),
+        TeacherDashboard.routeName: (ctx) => TeacherDashboard(),
       },
     );
   }

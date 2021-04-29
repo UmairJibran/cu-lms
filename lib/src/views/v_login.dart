@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'v_home.dart';
 import 'v_student_dashboard.dart';
+import 'v_teacher_dashboard.dart';
 
 import '../models/user.dart';
 
@@ -96,6 +97,9 @@ class _LoginState extends State<Login> {
                                   else if (loggedInUser.role == "admin")
                                     Navigator.of(context)
                                         .pushReplacementNamed(Home.routeName);
+                                  else
+                                    Navigator.of(context).pushReplacementNamed(
+                                        TeacherDashboard.routeName);
                                 } else {
                                   setState(() {
                                     _invalidCredentials = true;
