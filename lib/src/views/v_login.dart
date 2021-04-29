@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'v_home.dart';
+import 'v_student_dashboard.dart';
 
 import '../components/password_text_field.dart';
 import '../components/username_text_field.dart';
@@ -84,9 +85,13 @@ class _LoginState extends State<Login> {
                                   _usernameController.text,
                                   _passwordController.text,
                                 );
-                                if (response == "true") {
-                                  Navigator.of(context)
-                                      .pushReplacementNamed(Home.routeName);
+                                if (response["authenticated"]) {
+                                  if (response["role"] == "student")
+                                    Navigator.of(context).pushReplacementNamed(
+                                        StudentDashboard.routeName);
+                                  else
+                                    Navigator.of(context)
+                                        .pushReplacementNamed(Home.routeName);
                                 } else {
                                   setState(() {
                                     _invalidCredentials = true;
