@@ -1,8 +1,9 @@
-import 'package:cu_lms/src/models/user.dart';
 import 'package:flutter/material.dart';
 
 import 'v_home.dart';
 import 'v_student_dashboard.dart';
+
+import '../models/user.dart';
 
 import '../components/password_text_field.dart';
 import '../components/username_text_field.dart';
