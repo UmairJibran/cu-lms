@@ -10,6 +10,7 @@ import 'src/views/v_select_credits.dart';
 import 'src/views/v_student_dashboard.dart';
 import 'src/views/v_teacher_dashboard.dart';
 import 'src/views/v_subject_detail.dart';
+import 'src/views/v_add_assignment.dart';
 
 void main() {
   runApp(MyApp());
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         StudentDashboard.routeName: (ctx) => StudentDashboard(),
         TeacherDashboard.routeName: (ctx) => TeacherDashboard(),
         SubjectDetails.routeName: (ctx) => SubjectDetails(),
+        AddAssignment.routeName: (ctx) => AddAssignment(),
       },
     );
   }

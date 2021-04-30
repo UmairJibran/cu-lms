@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../components/subject_list_tile.dart';
+import '../views/v_add_assignment.dart';
 
 import '../models/subject.dart';
 
@@ -39,7 +40,12 @@ class _SubjectDetailsState extends State<SubjectDetails> {
             SubjectListTile(
               width: width,
               title: "Add Assignment",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AddAssignment.routeName,
+                  arguments: {"subjectId": subject.id},
+                );
+              },
             ),
             SubjectListTile(
               width: width,
