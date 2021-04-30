@@ -4,10 +4,12 @@ import '../components/subject_list_tile.dart';
 import 'v_add_assignment.dart';
 import 'v_add_lecture.dart';
 import 'v_assignments_for_subject.dart';
+import 'v_lectures_for_subject.dart';
 
 import '../models/subject.dart';
 
 import '../services/fetch_assignments_for_subject.dart';
+import '../services/fetch_lectures_for_subject.dart';
 
 class SubjectDetails extends StatefulWidget {
   static final String routeName = "/subject-details";
@@ -83,6 +85,26 @@ class _SubjectDetailsState extends State<SubjectDetails> {
                   AssignmentsForSubject.routeName,
                   arguments: {
                     "assignments": assignments,
+                    "subjectName": subject.name,
+                  },
+                );
+              },
+            ),
+            SubjectListTile(
+              width: width,
+              title: "All Lectures",
+              onPressed: () async {
+                setState(() {
+                  _loading = true;
+                });
+                var lectures = await fetchLecturesForSubject(subject.id);
+                setState(() {
+                  _loading = false;
+                });
+                Navigator.of(context).pushNamed(
+                  LecturesForSubject.routeName,
+                  arguments: {
+                    "lectures": lectures,
                     "subjectName": subject.name,
                   },
                 );
