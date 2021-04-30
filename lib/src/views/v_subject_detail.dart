@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../components/subject_list_tile.dart';
-import '../views/v_add_assignment.dart';
+import 'v_add_assignment.dart';
+import 'v_add_lecture.dart';
 
 import '../models/subject.dart';
 
@@ -50,7 +51,12 @@ class _SubjectDetailsState extends State<SubjectDetails> {
             SubjectListTile(
               width: width,
               title: "Add Lecture",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  AddLecture.routeName,
+                  arguments: {"subjectId": subject.id},
+                );
+              },
             ),
           ],
         ),
