@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'v_login.dart';
+import 'v_assignment_submission.dart';
 
 import '../services/display_all_assignments.dart';
 
@@ -65,7 +66,10 @@ class _StudentDashboardState extends State<StudentDashboard> {
                       itemBuilder: (_, index) {
                         return ListTile(
                           onTap: () {
-                            print(assignments[index]["assignment_id"]);
+                            Navigator.of(context).pushNamed(
+                              AssignmentSubmission.routeName,
+                              arguments: {"assignment": assignments[index]},
+                            );
                           },
                           title: Text(
                             assignments[index]["assignment_title"],
