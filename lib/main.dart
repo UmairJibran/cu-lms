@@ -12,6 +12,7 @@ import 'src/views/v_teacher_dashboard.dart';
 import 'src/views/v_subject_detail.dart';
 import 'src/views/v_add_assignment.dart';
 import 'src/views/v_add_lecture.dart';
+import 'src/views/v_assignments_for_subject.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         SubjectDetails.routeName: (ctx) => SubjectDetails(),
         AddAssignment.routeName: (ctx) => AddAssignment(),
         AddLecture.routeName: (ctx) => AddLecture(),
+        AssignmentsForSubject.routeName: (ctx) => AssignmentsForSubject(),
       },
     );
   }
