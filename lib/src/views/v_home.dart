@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'v_create_user.dart';
 import 'v_create_course.dart';
 import 'v_assign_course.dart';
+import 'v_login.dart';
 
 import '../components/home_text_button.dart';
 
@@ -20,6 +21,14 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("CU-LMS"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.login_outlined),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(Login.routeName);
+            },
+          ),
+        ],
       ),
       body: Container(
         height: getHeight(context),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'v_login.dart';
+
 class StudentDashboard extends StatelessWidget {
   static final routeName = "/student-dashboard";
 
@@ -13,6 +15,14 @@ class StudentDashboard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Student Dashboard"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.login_outlined),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(Login.routeName);
+            },
+          ),
+        ],
       ),
       body: Container(
         height: getHeight(context),

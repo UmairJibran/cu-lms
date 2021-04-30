@@ -5,6 +5,7 @@ import '../models/subject.dart';
 import '../services/fetch_my_sbjects.dart';
 
 import '../components/teacher_dashboard_list_tile.dart';
+import 'v_login.dart';
 
 class TeacherDashboard extends StatefulWidget {
   static final String routeName = "/teacher-dashboard";
@@ -46,6 +47,14 @@ class _TeacherDashboardState extends State<TeacherDashboard> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Teacher Dashboard"),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.login_outlined),
+            onPressed: () {
+              Navigator.of(context).pushReplacementNamed(Login.routeName);
+            },
+          ),
+        ],
       ),
       body: _loading
           ? CircularProgressIndicator()
