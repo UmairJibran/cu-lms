@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../views/v_subject_detail.dart';
+
 import '../models/subject.dart';
 
 class TeacherDashboardListTile extends StatelessWidget {
@@ -14,7 +16,10 @@ class TeacherDashboardListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        print(subject.id);
+        Navigator.of(context).pushNamed(
+          SubjectDetails.routeName,
+          arguments: {"subject": subject},
+        );
       },
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
