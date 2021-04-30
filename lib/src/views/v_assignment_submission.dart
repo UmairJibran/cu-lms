@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:file_picker/file_picker.dart' as fp;
+
 import '../services/assignment_submission.dart';
 
 class AssignmentSubmission extends StatefulWidget {
@@ -13,7 +15,7 @@ class _AssignmentSubmissionState extends State<AssignmentSubmission> {
   /* Variables*/
   late var assignment; //TODO: Finalise this
   late bool _loading, _filePresent, _error;
-  late String assignmentFile;
+  late String? assignmentFile;
   late var err;
 
   /* Functions*/
@@ -45,7 +47,7 @@ class _AssignmentSubmissionState extends State<AssignmentSubmission> {
                       _loading = true;
                     });
                     var res = await assignmentSubmission(
-                        assignment["assignment_id"], assignmentFile);
+                        assignment["assignment_id"], assignmentFile!);
                     if (res["error"])
                       setState(() {
                         _error = true;
@@ -103,12 +105,7 @@ class _AssignmentSubmissionState extends State<AssignmentSubmission> {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        assignmentFile = "dummy";
-                        _filePresent = true;
-                      });
-                    },
+                    onPressed: pickFile,
                     child: Text("Choose File"),
                   )
                 ],
@@ -118,5 +115,19 @@ class _AssignmentSubmissionState extends State<AssignmentSubmission> {
         ),
       ),
     );
+  }
+
+  void pickFile() async {
+    fp.FilePickerResult? result = await fp.FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: fp.FileType.custom,
+      allowedExtensions: ["pdf", "doc", "docx", "ppt", "zip", "rar"],
+    );
+    if (result != null) {
+      setState(() {
+        assignmentFile = result.files.single.path;
+        _filePresent = true;
+      });
+    }
   }
 }
